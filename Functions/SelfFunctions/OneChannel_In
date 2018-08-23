@@ -1,0 +1,8 @@
+FUNCTION OneChannel_In,Bandfile
+qi=QUERY_IMAGE(Bandfile,info,CHANNELS=channel)
+IF channel EQ 1 THEN 
+Is_one=1
+ELSE 
+Is_one=0
+RETURN,Is_one
+END

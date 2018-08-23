@@ -1,0 +1,4 @@
+PRO SelectDir,Title,OutDirID
+  outroot=DIALOG_PICKFILE(/DIRECTORY,TITLE=Title)
+  WIDGET_CONTROL,OutDirID,SET_VALUE=outroot
+END
