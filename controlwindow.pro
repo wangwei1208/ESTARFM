@@ -1,4 +1,5 @@
 PRO ControlWindow_CLEANUP,tlb
+COMPILE_OPT idl2
   WIDGET_CONTROL,tlb,GET_UVALUE=pState
   PTR_FREE,pState  ;释放指针
 END
@@ -208,5 +209,35 @@ CASE ComUName OF
       WIDGET_CONTROL,(*pState).wWindowSizeTxt1,SET_VALUE=''
       WIDGET_CONTROL,(*pState).wWindowSizeTxt2,SET_VALUE=''
      END
+     'Execute':BEGIN
+      is_null=para_is_null((*pState).wHSFilePath,(*pState).wLaHSFilePath,(*pState).wPreHTFilePath,(*pState).wLastHTFilePath,$
+        (*pState).wHSFileYear,(*pState).wHSFileMonth,(*pState).wHSFileDay,(*pState).wLaHSFileYear,(*pState).wLaHSFileMonth,$
+        (*pState).wLaHSFileDay,(*pState).wPreHTFileYear,(*pState).wPreHTFileMonth,(*pState).wPreHTFileDay,$
+        (*pState).wLastHTFileYear,(*pState).wLastHTFileMonth,(*pState).wLastHTFileDay,$
+        (*pState).wOutputDirTxt,(*pState).wWindowSizeTxt1,(*pState).wWindowSizeTxt2)
+       IF (is_null EQ 0) THEN BEGIN
+        status=DIALOG_MESSAGE('The parameters of model is not complete!',/ERROR)
+        RETURN
+       ENDIF ELSE BEGIN
+        is_onechannel1=is_onechannel((*pState).wHSFilePath)
+        is_onechannel2=is_onechannel((*pState).wLaHSFilePath)
+        is_onechannel3=is_onechannel((*pState).wPreHTFilePath)
+        is_onechannel4=is_onechannel((*pState).wLastHTFilePath)
+        IF (is_onechannel1 NE 1) OR (is_onechannel2 NE 1) OR (is_onechannel3 NE 1) OR (is_onechannel4 NE 1) THEN BEGIN
+          status=DIALOG_MESSAGE('The input data have more than one band!',/ERROR)
+          RETURN
+        ENDIF ELSE BEGIN
+          is_sameproj=is_sameprj((*pState).wHSFilePath,(*pState).wLaHSFilePath,(*pState).wPreHTFilePath,$
+            (*pState).wLastHTFilePath)
+          IF (is_sameproj NE 1) THEN BEGIN
+            status=DIALOG_MESSAGE('The coodinates of input files are different!',/ERROR)
+            RETURN
+          ENDIF ELSE BEGIN
+            
+          ENDELSE
+        ENDELSE
+       ENDELSE
+     END
+ELSE:
 ENDCASE
 END

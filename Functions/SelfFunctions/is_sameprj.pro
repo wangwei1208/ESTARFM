@@ -1,0 +1,52 @@
+function Is_SamePrj,Bandfile1ID,Bandfile2ID,Bandfile3ID,Bandfile4ID
+  compile_opt idl2
+  ENVI,/RESTORE_BASE_SAVE_FILES
+  ENVI_BATCH_INIT
+  WIDGET_CONTROL,Bandfile1ID,GET_VALUE=Bandfile1
+  WIDGET_CONTROL,Bandfile2ID,GET_VALUE=Bandfile2
+  WIDGET_CONTROL,Bandfile3ID,GET_VALUE=Bandfile3
+  WIDGET_CONTROL,Bandfile4ID,GET_VALUE=Bandfile4
+  ;Band1
+  ENVI_OPEN_DATA_FILE,Bandfile1,R_FID=Band1FID
+  IF (Band1FID EQ -1) THEN BEGIN
+    RETURN,0
+  ENDIF
+  MapInfo1=ENVI_GET_MAP_INFO(FID=Band1FID)
+  ;Band2
+  ENVI_OPEN_DATA_FILE,Bandfile2,R_FID=Band2FID
+  IF (Band2FID EQ -1) THEN BEGIN
+    RETURN,0
+  ENDIF
+  MapInfo2=ENVI_GET_MAP_INFO(FID=Band2FID)
+  ;Band3
+  ENVI_OPEN_DATA_FILE,Bandfile3,R_FID=Band3FID
+  IF (Band3FID EQ -1) THEN BEGIN
+    RETURN,0
+  ENDIF
+  MapInfo3=ENVI_GET_MAP_INFO(FID=Band3FID)
+  ;Band4
+  ENVI_OPEN_DATA_FILE,Bandfile4,R_FID=Band4FID
+  IF (Band4FID EQ -1) THEN BEGIN
+    RETURN,0
+  ENDIF
+  MapInfo4=ENVI_GET_MAP_INFO(FID=Band4FID)
+  IF (Mapinfo1.PROJ.DATUM EQ Mapinfo2.PROJ.DATUM) AND (Mapinfo2.PROJ.DATUM EQ Mapinfo3.PROJ.DATUM) AND $
+    (Mapinfo3.PROJ.DATUM EQ Mapinfo4.PROJ.DATUM) THEN BEGIN
+      IF (Mapinfo1.PROJ.NAME EQ Mapinfo2.PROJ.NAME) AND (Mapinfo2.PROJ.NAME EQ Mapinfo3.PROJ.NAME) AND $
+      (Mapinfo3.PROJ.NAME EQ Mapinfo4.PROJ.NAME) THEN BEGIN
+        RETURN,1
+      ENDIF ELSE BEGIN
+        RETURN,0
+      ENDELSE
+  ENDIF
+  ENVI_BATCH_EXIT
+;  qi1=QUERY_TIFF(Bandfile1,info1,GEOTIFF=geoinfo1)
+;  qi2=QUERY_TIFF(Bandfile2,info2,GEOTIFF=geoinfo2)
+;  qi3=QUERY_TIFF(Bandfile3,info3,GEOTIFF=geoinfo3)
+;  qi4=QUERY_TIFF(Bandfile4,info4,GEOTIFF=geoinfo4)
+;  IF geoinfo1.(4) EQ geoinfo2.(4) THEN BEGIN
+;    Is_Same=1
+;  ENDIF ELSE BEGIN
+;    Is_Same=0
+;  ENDELSE
+end
