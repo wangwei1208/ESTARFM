@@ -41,9 +41,10 @@ wHsPathLabel=WIDGET_LABEL(wHSFileLabelBase,VALUE='Pre-high spatial resolution da
 wHsDateLabel=WIDGET_LABEL(wHSFileLabelBase,VALUE=' Date(yyyy-mm-dd):')
 wHSFileInputBase=WIDGET_BASE(wHSFileBase,XSIZE=(sz[0]/2.12),YSIZE=(sz[1]/12.8),/ROW)
 wHSFilePath=WIDGET_TEXT(wHSFileInputBase,XSIZE=(sz[0]/25),YSIZE=(sz[1]/1000),UNAME='PreHsImagePath',/EDITABLE,/SENSITIVE)
-wHSFileYear=WIDGET_TEXT(wHSFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='PreHsImageYear',/SENSITIVE,/EDITABLE)
-wHSFileMonth=WIDGET_TEXT(wHSFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='PreHsImageMonth',/SENSITIVE,/EDITABLE)
-wHSFileDay=WIDGET_TEXT(wHSFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='PreHsImageDay',/SENSITIVE,/EDITABLE)
+wHSFileYear=WIDGET_DROPLIST(wHSFileInputBase,XSIZE=((sz[0]/10)),YSIZE=(sz[1]),UNAME='PreHsImageYear',/SENSITIVE)
+wHSFileMonth=WIDGET_DROPLIST(wHSFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]),UNAME='PreHsImageMonth',/SENSITIVE)
+wHSFileDay=WIDGET_DROPLIST(wHSFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]),UNAME='PreHsImageDay',/SENSITIVE)
+Init_Year_Month_Day,wHSFileYear,wHSFileMonth,wHSFileDay ;初始化年月日
 ;按钮
 wHSButtonBase=WIDGET_BASE(wPreHSBase,XSIZE=(sz[0]/2.08),YSIZE=(sz[1]/16),/ROW)
 wButton=WIDGET_BUTTON(wHSButtonBase,VALUE='Browse pre-high spatial resolution data',UNAME='OPreHSB',/ALIGN_CENTER)
@@ -56,10 +57,11 @@ wLaHSFileLabelBase=WIDGET_BASE(wLaHSFileBase,XSIZE=(sz[0]/2.12),YSIZE=(sz[1]/19)
 wLaHsPathLabel=WIDGET_LABEL(wLaHSFileLabelBase,VALUE='Last-high spatial resolution data:')
 wLaHsDateLabel=WIDGET_LABEL(wLaHSFileLabelBase,VALUE=' Date(yyyy-mm-dd):')
 wLaHSFileInputBase=WIDGET_BASE(wLaHSFileBase,XSIZE=(sz[0]/2.12),YSIZE=(sz[1]/12.8),/ROW)
-wLaHSFilePath=WIDGET_TEXT(wLaHSFileInputBase,XSIZE=(sz[0]/25),YSIZE=(sz[1]/1000),UNAME='LastHsImagePath',/SENSITIVE,/EDITABLE)
-wLaHSFileYear=WIDGET_TEXT(wLaHSFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='LastHsImageYear',/SENSITIVE,/EDITABLE)
-wLaHSFileMonth=WIDGET_TEXT(wLaHSFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='LastHsImageMonth',/SENSITIVE,/EDITABLE)
-wLaHSFileDay=WIDGET_TEXT(wLaHSFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='LastHsImageDay',/SENSITIVE,/EDITABLE)
+wLaHSFilePath=WIDGET_TEXT(wLaHSFileInputBase,XSIZE=(sz[0]/21.2),YSIZE=(sz[1]/1000),UNAME='LastHsImagePath',/SENSITIVE,/EDITABLE)
+wLaHSFileYear=WIDGET_DROPLIST(wLaHSFileInputBase,XSIZE=((sz[0]/15)),YSIZE=(sz[1]),UNAME='LastHsImageYear',/SENSITIVE)
+WIDGET_CONTROL,wLaHSFileYear,SET_VALUE=ListValue
+wLaHSFileMonth=WIDGET_DROPLIST(wLaHSFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]),UNAME='LastHsImageMonth',/SENSITIVE)
+wLaHSFileDay=WIDGET_DROPLIST(wLaHSFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]),UNAME='LastHsImageDay',/SENSITIVE)
 ;按钮
 wLaHSButtonBase=WIDGET_BASE(wLastHSBase,XSIZE=(sz[0]/2.08),YSIZE=(sz[1]/16),/ROW)
 wButton=WIDGET_BUTTON(wLaHSButtonBase,VALUE='Browse last-high spatial resolution data',UNAME='OLastHSB',/ALIGN_CENTER)
@@ -209,7 +211,14 @@ CASE ComUName OF
       WIDGET_CONTROL,(*pState).wWindowSizeTxt1,SET_VALUE=''
       WIDGET_CONTROL,(*pState).wWindowSizeTxt2,SET_VALUE=''
      END
+     'PreHsImageYear':BEGIN
+      DateSeleChange,(*pState).wHSFileYear,(*pState).wHSFileMonth,(*pState).wHSFileDay,event
+     END
+     'PreHsImageMonth':BEGIN
+      DateSeleChange,(*pState).wHSFileYear,(*pState).wHSFileMonth,(*pState).wHSFileDay,event
+     END
      'Execute':BEGIN
+      ;Judge the parameters is inputed completely
       is_null=para_is_null((*pState).wHSFilePath,(*pState).wLaHSFilePath,(*pState).wPreHTFilePath,(*pState).wLastHTFilePath,$
         (*pState).wHSFileYear,(*pState).wHSFileMonth,(*pState).wHSFileDay,(*pState).wLaHSFileYear,(*pState).wLaHSFileMonth,$
         (*pState).wLaHSFileDay,(*pState).wPreHTFileYear,(*pState).wPreHTFileMonth,(*pState).wPreHTFileDay,$
@@ -219,6 +228,7 @@ CASE ComUName OF
         status=DIALOG_MESSAGE('The parameters of model is not complete!',/ERROR)
         RETURN
        ENDIF ELSE BEGIN
+        ;Judge the data has one channel only
         is_onechannel1=is_onechannel((*pState).wHSFilePath)
         is_onechannel2=is_onechannel((*pState).wLaHSFilePath)
         is_onechannel3=is_onechannel((*pState).wPreHTFilePath)
@@ -227,13 +237,32 @@ CASE ComUName OF
           status=DIALOG_MESSAGE('The input data have more than one band!',/ERROR)
           RETURN
         ENDIF ELSE BEGIN
+          ;Judge the projections of the data are different
           is_sameproj=is_sameprj((*pState).wHSFilePath,(*pState).wLaHSFilePath,(*pState).wPreHTFilePath,$
             (*pState).wLastHTFilePath)
           IF (is_sameproj NE 1) THEN BEGIN
             status=DIALOG_MESSAGE('The coodinates of input files are different!',/ERROR)
             RETURN
           ENDIF ELSE BEGIN
-            
+            Year1=is_NumChar((*pState).wHSFileYear,4)
+            Year2=is_NumChar((*pState).wLaHSFileYear,4)
+            Year3=is_NumChar((*pState).wPreHTFileYear,4)
+            Year4=is_NumChar((*pState).wLastHTFileYear,4)
+            Month1=is_Numchar((*pState).wHSFileMonth,2)
+            Month2=is_Numchar((*pState).wLaHSFileMonth,2)
+            Month3=is_Numchar((*pState).wPreHTFileMonth,2)
+            Month4=is_Numchar((*pState).wLastHTFileMonth,2)
+            Day1=is_NumChar((*pState).wHSFileDay,2)
+            Day1=is_NumChar((*pState).wLaHSFileDay,2)
+            Day1=is_NumChar((*pState).wPreHTFileDay,2)
+            Day1=is_NumChar((*pState).wLastHTFileDay,2)
+            IF (Year1 NE 1) OR (Year2 NE 1) OR (Year3 NE 1) OR (Year4 NE 1) OR (Month1 NE 1) OR (Month2 NE 1) OR (Month3 $
+              NE 1) OR (Month4 NE 1) OR (Day1 NE 1) OR (Day2 NE 1) OR (Day3 NE 1) OR (Day4 NE 1) THEN BEGIN
+                status=DIALOG_MESSAGE('The input date is invalid!',/ERROR)
+                RETURN
+            ENDIF ELSE BEGIN
+              
+            ENDELSE
           ENDELSE
         ENDELSE
        ENDELSE
