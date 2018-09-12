@@ -57,11 +57,11 @@ wLaHSFileLabelBase=WIDGET_BASE(wLaHSFileBase,XSIZE=(sz[0]/2.12),YSIZE=(sz[1]/19)
 wLaHsPathLabel=WIDGET_LABEL(wLaHSFileLabelBase,VALUE='Last-high spatial resolution data:')
 wLaHsDateLabel=WIDGET_LABEL(wLaHSFileLabelBase,VALUE=' Date(yyyy-mm-dd):')
 wLaHSFileInputBase=WIDGET_BASE(wLaHSFileBase,XSIZE=(sz[0]/2.12),YSIZE=(sz[1]/12.8),/ROW)
-wLaHSFilePath=WIDGET_TEXT(wLaHSFileInputBase,XSIZE=(sz[0]/21.2),YSIZE=(sz[1]/1000),UNAME='LastHsImagePath',/SENSITIVE,/EDITABLE)
-wLaHSFileYear=WIDGET_DROPLIST(wLaHSFileInputBase,XSIZE=((sz[0]/15)),YSIZE=(sz[1]),UNAME='LastHsImageYear',/SENSITIVE)
-WIDGET_CONTROL,wLaHSFileYear,SET_VALUE=ListValue
+wLaHSFilePath=WIDGET_TEXT(wLaHSFileInputBase,XSIZE=(sz[0]/25),YSIZE=(sz[1]/1000),UNAME='LastHsImagePath',/SENSITIVE,/EDITABLE)
+wLaHSFileYear=WIDGET_DROPLIST(wLaHSFileInputBase,XSIZE=((sz[0]/10)),YSIZE=(sz[1]),UNAME='LastHsImageYear',/SENSITIVE)
 wLaHSFileMonth=WIDGET_DROPLIST(wLaHSFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]),UNAME='LastHsImageMonth',/SENSITIVE)
 wLaHSFileDay=WIDGET_DROPLIST(wLaHSFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]),UNAME='LastHsImageDay',/SENSITIVE)
+Init_Year_Month_Day,wLaHSFileYear,wLaHSFileMonth,wLaHSFileDay  ;初始化年月日
 ;按钮
 wLaHSButtonBase=WIDGET_BASE(wLastHSBase,XSIZE=(sz[0]/2.08),YSIZE=(sz[1]/16),/ROW)
 wButton=WIDGET_BUTTON(wLaHSButtonBase,VALUE='Browse last-high spatial resolution data',UNAME='OLastHSB',/ALIGN_CENTER)
@@ -75,9 +75,10 @@ wPreHtPathLabel=WIDGET_LABEL(wPreHTFileLabelBase,VALUE='Pre-high time resolution
 wPreHtDateLabel=WIDGET_LABEL(wPreHTFileLabelBase,VALUE='    Date(yyyy-mm-dd):')
 wPreHTFileInputBase=WIDGET_BASE(wPreHTFileBase,XSIZE=(sz[0]/2.12),YSIZE=(sz[1]/12.8),/ROW)
 wPreHTFilePath=WIDGET_TEXT(wPreHTFileInputBase,XSIZE=(sz[0]/25),YSIZE=(sz[1]/1000),UNAME='PreHtImagePath',/SENSITIVE,/EDITABLE)
-wPreHTFileYear=WIDGET_TEXT(wPreHTFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='PrHtImageYear',/SENSITIVE,/EDITABLE)
-wPreHTFileMonth=WIDGET_TEXT(wPreHTFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='PreHtImageMonth',/SENSITIVE,/EDITABLE)
-wPreHTFileDay=WIDGET_TEXT(wPreHTFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='PreHtImageDay',/SENSITIVE,/EDITABLE)
+wPreHTFileYear=WIDGET_DROPLIST(wPreHTFileInputBase,XSIZE=(sz[0]/10),YSIZE=(sz[1]/1000),UNAME='PrHtImageYear',/SENSITIVE)
+wPreHTFileMonth=WIDGET_DROPLIST(wPreHTFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]/1000),UNAME='PreHtImageMonth',/SENSITIVE)
+wPreHTFileDay=WIDGET_DROPLIST(wPreHTFileInputBase,XSIZE=(sz[0]/20),YSIZE=(sz[1]/1000),UNAME='PreHtImageDay',/SENSITIVE)
+Init_Year_Month_Day,wPreHTFileYear,wPreHTFileMonth,wPreHTFileDay ;初始化年月日
 ;按钮
 wPreHTButtonBase=WIDGET_BASE(wPreHTBase,XSIZE=(sz[0]/2.08),YSIZE=(sz[1]/16),/ROW)
 wButton=WIDGET_BUTTON(wPreHTButtonBase,VALUE='Browse pre-high time resolution data',UNAME='OPreHTB',/ALIGN_CENTER)
@@ -91,9 +92,10 @@ wLastHtPathLabel=WIDGET_LABEL(wLastHTFileLabelBase,VALUE='Last-high time resolut
 wLastHtDateLabel=WIDGET_LABEL(wLastHTFileLabelBase,VALUE='    Date(yyyy-mm-dd):')
 wLastHTFileInputBase=WIDGET_BASE(wLastHTFileBase,XSIZE=(sz[0]/2.12),YSIZE=(sz[1]/12.8),/ROW)
 wLastHTFilePath=WIDGET_TEXT(wLastHTFileInputBase,XSIZE=(sz[0]/25),YSIZE=(sz[1]/1000),UNAME='LastHtImagePath',/SENSITIVE,/EDITABLE)
-wLastHTFileYear=WIDGET_TEXT(wLastHTFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='LastHtImageYear',/SENSITIVE,/EDITABLE)
-wLastHTFileMonth=WIDGET_TEXT(wLastHTFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='LastHtImageMonth',/SENSITIVE,/EDITABLE)
-wLastHTFileDay=WIDGET_TEXT(wLastHTFileInputBase,XSIZE=((sz[0]/25)/4.05),YSIZE=(sz[1]/1000),UNAME='LastHtImageDay',/SENSITIVE,/EDITABLE)
+wLastHTFileYear=WIDGET_DROPLIST(wLastHTFileInputBase,XSIZE=(sz[0]/10),YSIZE=(sz[1]/1000),UNAME='LastHtImageYear',/SENSITIVE)
+wLastHTFileMonth=WIDGET_DROPLIST(wLastHTFileInputBase,XSIZE=((sz[0]/20)),YSIZE=(sz[1]/1000),UNAME='LastHtImageMonth',/SENSITIVE)
+wLastHTFileDay=WIDGET_DROPLIST(wLastHTFileInputBase,XSIZE=(sz[0]/20),YSIZE=(sz[1]/1000),UNAME='LastHtImageDay',/SENSITIVE)
+Init_Year_Month_Day,wLastHTFileYear,wLastHTFileMonth,wLastHTFileDay ;初始化年月日
 ;按钮
 wLastHTButtonBase=WIDGET_BASE(wLastHTBase,XSIZE=(sz[0]/2.08),YSIZE=(sz[1]/16),/ROW)
 wButton=WIDGET_BUTTON(wLastHTButtonBase,VALUE='Browse last-high time resolution data',UNAME='OLastHTB',/ALIGN_CENTER)
@@ -108,14 +110,12 @@ wOutputLabel=WIDGET_LABEL(wOutPutBase,VALUE='Output Parameters',/ALIGN_CENTER)
 ;
 wOutputLabelBase=WIDGET_BASE(wOutPutBase,XSIZE=(sz[0]/2.14),YSIZE=(sz[1]/25.0),/ROW)
 wOutputDirLabel=WIDGET_LABEL(wOutputLabelBase,VALUE='Output Directory:',/ALIGN_LEFT)
-wMoveWindow=WIDGET_LABEL(wOutputLabelBase,VALUE='               Move Window Size:',/ALIGN_LEFT)
+wMoveWindow=WIDGET_LABEL(wOutputLabelBase,VALUE='                         Move Window Size:',/ALIGN_LEFT)
 ;
 wOutputTxtBase=WIDGET_BASE(wOutPutBase,XSIZE=(sz[0]/2.14),YSIZE=(sz[1]/16.0),/ROW)
-wOutputDirTxt=WIDGET_TEXT(wOutputTxtBase,XSIZE=(sz[0]/2.14)/13.0,YSIZE=(sz[1]/420.0),/EDITABLE,/SENSITIVE)
+wOutputDirTxt=WIDGET_TEXT(wOutputTxtBase,XSIZE=(sz[0]/2.14)/9.0,YSIZE=(sz[1]/420.0),/EDITABLE,/SENSITIVE)
 wIntervalLabel=WIDGET_LABEL(wOutputTxtBase,VALUE='   ')
 wWindowSizeTxt1=WIDGET_TEXT(wOutputTxtBase,XSIZE=(sz[0]/2.14)/35.0,YSIZE=(sz[1]/420.0),/EDITABLE,/SENSITIVE)
-wIntervalLabel=WIDGET_LABEL(wOutputTxtBase,VALUE=' * ')
-wWindowSizeTxt2=WIDGET_TEXT(wOutputTxtBase,XSIZE=(sz[0]/2.14)/35.0,YSIZE=(sz[1]/420.0),/EDITABLE,/SENSITIVE)
 ;
 wOutputButtonBase=WIDGET_BASE(wOutPutBase,XSIZE=(sz[0]/2.14),YSIZE=(sz[1]/13.0),/ROW)
 wButton=WIDGET_BUTTON(wOutputButtonBase,VALUE='Select Output Directory',UNAME='SelectDir',/ALIGN_CENTER)
@@ -132,13 +132,14 @@ state={wButton:wButton,tlb:tlb,ExitButton:ExitButton,wHSFilePath:wHSFilePath,prs
   wHSFileYear:wHSFileYear,wHSFileMonth:wHSFileMonth,wHSFileDay:wHSFileDay,wLaHSFileYear:wLaHSFileYear,wLaHSFileMonth:wLaHSFileMonth,$
   wLaHSFileDay:wLaHSFileDay,wPreHTFileYear:wPreHTFileYear,wPreHTFileMonth:wPreHTFileMonth,wPreHTFileDay:wPreHTFileDay,$
   wLastHTFileYear:wLastHTFileYear,wLastHTFileMonth:wLastHTFileMonth,wLastHTFileDay:wLastHTFileDay,wOutputDirTxt:wOutputDirTxt,$
-  wWindowSizeTxt1:wWindowSizeTxt1,wWindowSizeTxt2:wWindowSizeTxt2}
+  wWindowSizeTxt1:wWindowSizeTxt1}
 pState=PTR_NEW(state,/NO_COPY)
 CenterTLB,tlb
 WIDGET_CONTROL,tlb,/REALIZE,/map,set_uValue=pState
 XMANAGER,'ControlWindow',tlb,/NO_BLOCK,cleanup='ControlWindow_CLEANUP' ;XMANAGER处理产生的事件并调用事件响应程序
 END
 
+;EVENT
 PRO ControlWindow_EVENT,event
 COMPILE_OPT idl2
 WIDGET_CONTROL,event.TOP,GET_UVALUE=pState
@@ -193,19 +194,6 @@ CASE ComUName OF
       WIDGET_CONTROL,(*pState).wLaHSFilePath,SET_VALUE=''
       WIDGET_CONTROL,(*pState).wPreHTFilePath,SET_VALUE=''
       WIDGET_CONTROL,(*pState).wLastHTFilePath,SET_VALUE=''
-      ;Date
-      WIDGET_CONTROL,(*pState).wHSFileYear,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wHSFileMonth,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wHSFileDay,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wLaHSFileYear,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wLaHSFileMonth,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wLaHSFileDay,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wPreHTFileYear,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wPreHTFileMonth,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wPreHTFileDay,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wLastHTFileYear,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wLastHTFileMonth,SET_VALUE=''
-      WIDGET_CONTROL,(*pState).wLastHTFileDay,SET_VALUE=''
       ;Output para
       WIDGET_CONTROL,(*pState).wOutputDirTxt,SET_VALUE=''
       WIDGET_CONTROL,(*pState).wWindowSizeTxt1,SET_VALUE=''
@@ -217,13 +205,31 @@ CASE ComUName OF
      'PreHsImageMonth':BEGIN
       DateSeleChange,(*pState).wHSFileYear,(*pState).wHSFileMonth,(*pState).wHSFileDay,event
      END
+     'LastHsImageYear':BEGIN
+      DateSeleChange,(*pState).wLaHSFileYear,(*pState).wLaHSFileMonth,(*pState).wLaHSFileDay,event
+     END
+     'LastHsImageMonth':BEGIN
+      DateSeleChange,(*pState).wLaHSFileYear,(*pState).wLaHSFileMonth,(*pState).wLaHSFileDay,event
+     END
+     'PrHtImageYear':BEGIN
+      DateSeleChange,(*pState).wPreHTFileYear,(*pState).wPreHTFileMonth,(*pState).wPreHTFileDay,event
+     END
+     'PreHtImageMonth':BEGIN
+      DateSeleChange,(*pState).wPreHTFileYear,(*pState).wPreHTFileMonth,(*pState).wPreHTFileDay,event
+     END
+     'LastHtImageYear':BEGIN
+      DateSeleChange,(*pState).wLastHTFileYear,(*pState).wLastHTFileMonth,(*pState).wLastHTFileDay,event
+     END
+     'LastHtImageMonth':BEGIN
+      DateSeleChange,(*pState).wLastHTFileYear,(*pState).wLastHTFileMonth,(*pState).wLastHTFileDay,event
+     END
      'Execute':BEGIN
       ;Judge the parameters is inputed completely
       is_null=para_is_null((*pState).wHSFilePath,(*pState).wLaHSFilePath,(*pState).wPreHTFilePath,(*pState).wLastHTFilePath,$
         (*pState).wHSFileYear,(*pState).wHSFileMonth,(*pState).wHSFileDay,(*pState).wLaHSFileYear,(*pState).wLaHSFileMonth,$
         (*pState).wLaHSFileDay,(*pState).wPreHTFileYear,(*pState).wPreHTFileMonth,(*pState).wPreHTFileDay,$
         (*pState).wLastHTFileYear,(*pState).wLastHTFileMonth,(*pState).wLastHTFileDay,$
-        (*pState).wOutputDirTxt,(*pState).wWindowSizeTxt1,(*pState).wWindowSizeTxt2)
+        (*pState).wOutputDirTxt,(*pState).wWindowSizeTxt1)
        IF (is_null EQ 0) THEN BEGIN
         status=DIALOG_MESSAGE('The parameters of model is not complete!',/ERROR)
         RETURN
@@ -244,25 +250,11 @@ CASE ComUName OF
             status=DIALOG_MESSAGE('The coodinates of input files are different!',/ERROR)
             RETURN
           ENDIF ELSE BEGIN
-            Year1=is_NumChar((*pState).wHSFileYear,4)
-            Year2=is_NumChar((*pState).wLaHSFileYear,4)
-            Year3=is_NumChar((*pState).wPreHTFileYear,4)
-            Year4=is_NumChar((*pState).wLastHTFileYear,4)
-            Month1=is_Numchar((*pState).wHSFileMonth,2)
-            Month2=is_Numchar((*pState).wLaHSFileMonth,2)
-            Month3=is_Numchar((*pState).wPreHTFileMonth,2)
-            Month4=is_Numchar((*pState).wLastHTFileMonth,2)
-            Day1=is_NumChar((*pState).wHSFileDay,2)
-            Day1=is_NumChar((*pState).wLaHSFileDay,2)
-            Day1=is_NumChar((*pState).wPreHTFileDay,2)
-            Day1=is_NumChar((*pState).wLastHTFileDay,2)
-            IF (Year1 NE 1) OR (Year2 NE 1) OR (Year3 NE 1) OR (Year4 NE 1) OR (Month1 NE 1) OR (Month2 NE 1) OR (Month3 $
-              NE 1) OR (Month4 NE 1) OR (Day1 NE 1) OR (Day2 NE 1) OR (Day3 NE 1) OR (Day4 NE 1) THEN BEGIN
-                status=DIALOG_MESSAGE('The input date is invalid!',/ERROR)
+              WinSize_v=is_odd_number((*pState).wWindowSizeTxt1)
+              IF (WinSize_v NE 1) THEN BEGIN
+                status=DIALOG_MESSAGE('The window size is not a odd number.',/ERROR)
                 RETURN
-            ENDIF ELSE BEGIN
-              
-            ENDELSE
+              ENDIF
           ENDELSE
         ENDELSE
        ENDELSE

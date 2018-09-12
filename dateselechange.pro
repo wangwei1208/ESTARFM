@@ -19,14 +19,52 @@ pro DateSeleChange,YearID,MonthID,DayID,event
           ENDFOR
           WIDGET_CONTROL,DayID,SET_VALUE=DayList
         ENDIF
+        IF ((Month EQ 1) OR (Month EQ 3) OR (Month EQ 5) OR (Month EQ 7) OR (Month EQ 8) OR (Month EQ 10) OR (Month EQ 12)) THEN BEGIN
+          DayList=STRARR(31)
+          FOR i=0,30 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
+        IF ((Month EQ 4) OR (Month EQ 6) OR (Month EQ 9) OR (Month EQ 11)) THEN BEGIN
+          DayList=STRARR(30)
+          FOR i=0,29 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
       ENDIF ELSE BEGIN
-        DayList=STRARR(28)
-        FOR i=0,27 DO BEGIN
-          j=i+1
-          DayList[i]=j
-          DayList[i]=STRTRIM(DayList[i],2)
-        ENDFOR
-        WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        IF (Month EQ 2) THEN BEGIN
+          DayList=STRARR(28)
+          FOR i=0,27 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
+        IF ((Month EQ 1) OR (Month EQ 3) OR (Month EQ 5) OR (Month EQ 7) OR (Month EQ 8) OR (Month EQ 10) OR (Month EQ 12)) THEN BEGIN
+          DayList=STRARR(31)
+          FOR i=0,30 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
+        IF ((Month EQ 4) OR (Month EQ 6) OR (Month EQ 9) OR (Month EQ 11)) THEN BEGIN
+          DayList=STRARR(30)
+          FOR i=0,29 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
       ENDELSE
       IF ((Month EQ 1) OR (Month EQ 3) OR (Month EQ 5) OR (Month EQ 7) OR (Month EQ 8) OR (Month EQ 10) OR (Month EQ 12)) THEN BEGIN
         DayList=STRARR(31)
@@ -39,7 +77,7 @@ pro DateSeleChange,YearID,MonthID,DayID,event
       ENDIF
       IF ((Month EQ 4) OR (Month EQ 6) OR (Month EQ 9) OR (Month EQ 11)) THEN BEGIN
         DayList=STRARR(30)
-        FOR i=0,30 DO BEGIN
+        FOR i=0,29 DO BEGIN
           j=i+1
           DayList[i]=j
           DayList[i]=STRTRIM(DayList[i],2)
@@ -62,33 +100,53 @@ pro DateSeleChange,YearID,MonthID,DayID,event
           ENDFOR
           WIDGET_CONTROL,DayID,SET_VALUE=DayList
         ENDIF
+        IF ((Month EQ 1) OR (Month EQ 3) OR (Month EQ 5) OR (Month EQ 7) OR (Month EQ 8) OR (Month EQ 10) OR (Month EQ 12)) THEN BEGIN
+          DayList=STRARR(31)
+          FOR i=0,30 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
+        IF ((Month EQ 4) OR (Month EQ 6) OR (Month EQ 9) OR (Month EQ 11)) THEN BEGIN
+          DayList=STRARR(30)
+          FOR i=0,29 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
       ENDIF ELSE BEGIN
-        DayList=STRARR(28)
-        FOR i=0,27 DO BEGIN
-          j=i+1
-          DayList[i]=j
-          DayList[i]=STRTRIM(DayList[i],2)
-        ENDFOR
-        WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        IF (Month EQ 2) THEN BEGIN
+          DayList=STRARR(28)
+          FOR i=0,27 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
+        IF ((Month EQ 1) OR (Month EQ 3) OR (Month EQ 5) OR (Month EQ 7) OR (Month EQ 8) OR (Month EQ 10) OR (Month EQ 12)) THEN BEGIN
+          DayList=STRARR(31)
+          FOR i=0,30 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
+        IF ((Month EQ 4) OR (Month EQ 6) OR (Month EQ 9) OR (Month EQ 11)) THEN BEGIN
+          DayList=STRARR(30)
+          FOR i=0,29 DO BEGIN
+            j=i+1
+            DayList[i]=j
+            DayList[i]=STRTRIM(DayList[i],2)
+          ENDFOR
+          WIDGET_CONTROL,DayID,SET_VALUE=DayList
+        ENDIF
       ENDELSE
-      IF ((Month EQ 1) OR (Month EQ 3) OR (Month EQ 5) OR (Month EQ 7) OR (Month EQ 8) OR (Month EQ 10) OR (Month EQ 12)) THEN BEGIN
-        DayList=STRARR(31)
-        FOR i=0,30 DO BEGIN
-          j=i+1
-          DayList[i]=j
-          DayList[i]=STRTRIM(DayList[i],2)
-        ENDFOR
-        WIDGET_CONTROL,DayID,SET_VALUE=DayList
-      ENDIF
-      IF ((Month EQ 4) OR (Month EQ 6) OR (Month EQ 9) OR (Month EQ 11)) THEN BEGIN
-        DayList=STRARR(30)
-        FOR i=0,30 DO BEGIN
-          j=i+1
-          DayList[i]=j
-          DayList[i]=STRTRIM(DayList[i],2)
-        ENDFOR
-        WIDGET_CONTROL,DayID,SET_VALUE=DayList
-      ENDIF
     ENDIF ;Month
   ENDIF
 end

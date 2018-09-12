@@ -19,12 +19,11 @@ WIDGET_CONTROL,Daytxt3ID,GET_VALUE=Daytxt3
 WIDGET_CONTROL,Daytxt4ID,GET_VALUE=Daytxt4
 WIDGET_CONTROL,DirtxtID,GET_VALUE=Dirtxt
 WIDGET_CONTROL,Windowsize1ID,GET_VALUE=Windowsize1
-WIDGET_CONTROL,Windowsize2ID,GET_VALUE=Windowsize2
 IF [(Pathtxt1 EQ '') OR (Pathtxt2 EQ '') OR (Pathtxt3 EQ '') OR (Pathtxt4 EQ '') OR $
   (Yeartxt1 EQ '') OR (Yeartxt2 EQ '') OR (Yeartxt3 EQ '') OR (Yeartxt4 EQ '') OR $
   (Monthtxt1 EQ '') OR (Monthtxt2 EQ '') OR (Monthtxt3 EQ '') OR (Monthtxt4 EQ '') OR $
   (Daytxt1 EQ '') OR (Daytxt2 EQ '') OR (Daytxt3 EQ '') OR (Daytxt4 EQ '') OR $
-  (Dirtxt EQ '') OR (Windowsize1 EQ '') OR (Windowsize2 EQ '')] THEN BEGIN
+  (Dirtxt EQ '') OR (Windowsize1 EQ '')] THEN BEGIN
     RETURN,0
 ENDIF ELSE BEGIN
   RETURN,1
